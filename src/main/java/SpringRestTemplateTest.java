@@ -16,7 +16,7 @@ import java.util.Properties;
 
 /* Request Capture using wireshark for "multipart/form-data" content-type header request, please note that content-type header have been added
 charset=UTF-8 before boundary : Content-Type: multipart/form-data;charset=UTF-8;boundary=Qnz2RJQSuZZCFzotxjXrT5q4mdMnMM
-The same problem is
+The same problem is present with "multipart/mixed"
 **********************************
 Hypertext Transfer Protocol
     POST /LATEST/resources/example HTTP/1.1\r\n
