@@ -1,7 +1,7 @@
-#Case 28625 Tests
-##Prequisites :
+# Case 28625 Tests
+## Prequisites :
 Only a MarkLogic server instance is necessary
-##Configuration
+## Configuration
 - Files src/main/ml-modules/rest-properties.json 
 should be adapted to choose different mlHost,mlRestPort,mlUsername 
 and mlPassword
@@ -9,7 +9,7 @@ and mlPassword
 at src/main/ml-modules/service/example.xqy
 and any other extension could be added by inserting 
 it into this directory
-##Execution
+## Execution
 Two classes are available :
 - OkHttpMultipartTest.java demonstrate the rest client call using payload (multipart/from-data and multipart/mixed)
 using Spring RestTemplate 
