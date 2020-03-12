@@ -1,6 +1,0 @@
-{ "rest-api": {
-    "name": "case28625",
-    "database": "case28625-content",
-    "port": "8013",
-    "modules-database": "case28625-modules"
-} }

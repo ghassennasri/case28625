@@ -2,7 +2,7 @@
 ## Prequisites :
 Only a MarkLogic server 9+ instance is necessary
 ## Configuration
-- Files src/main/ml-modules/rest-properties.json 
+- File gradle.properties in root directory 
 should be adapted to choose different mlHost,mlRestPort,mlUsername 
 and mlPassword
 - The xquery resource service extension could be adapted  
