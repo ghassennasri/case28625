@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "com.marklogic.ml-gradle" version "3.6.0"
 }
 
 group 'org.example'
@@ -10,6 +11,23 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+ext {
+    springRestTemplateTestClass = "SpringRestTemplateTest"
+    okHttpMultipartTestClass="OkHttpMultipartTest"
+}
+task runSpringRestTemplateTest(type: JavaExec) {
+    group = "Execution"
+    description = "Run SpringRestTemplateTest"
+    classpath = sourceSets.main.runtimeClasspath
+    main = springRestTemplateTestClass
+}
+task runOkHttpMultipartTest(type: JavaExec) {
+    group = "Execution"
+    description = "Run OkHttpMultipartTest"
+    classpath = sourceSets.main.runtimeClasspath
+    main = okHttpMultipartTestClass
+}
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
