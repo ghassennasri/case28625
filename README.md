@@ -1,6 +1,6 @@
 # Case 28625 Tests
 ## Prequisites :
-Only a MarkLogic server instance is necessary
+Only a MarkLogic server 9+ instance is necessary
 ## Configuration
 - Files src/main/ml-modules/rest-properties.json 
 should be adapted to choose different mlHost,mlRestPort,mlUsername 
