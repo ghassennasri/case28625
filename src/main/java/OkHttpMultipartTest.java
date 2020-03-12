@@ -21,21 +21,13 @@ public class OkHttpMultipartTest {
         }).build();
         return httpClient;
     }
-    private static Map<String ,String> readProperties() throws IOException {
+    private static Map<String ,String> readProperties(String []args) throws Exception {
         Map<String,String> m=new HashMap<>();
-        Properties prop = new Properties();
-        String propFileName = "config.properties";
 
-        InputStream inputStream = SpringRestTemplateTest.class.getClassLoader().getResourceAsStream(propFileName);
-        if (inputStream != null) {
-            prop.load(inputStream);
-        } else {
-            throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-        }
-        m.put("host",prop.getProperty("host"));
-        m.put("port",prop.getProperty("port"));
-        m.put("username",prop.getProperty("username"));
-        m.put("password",prop.getProperty("password"));
+        m.put("host",args[0]);
+        m.put("port",args[1]);
+        m.put("username",args[2]);
+        m.put("password",args[3]);
         return  m;
     }
     private static void logRequest(Request request) throws IOException {
@@ -52,9 +44,9 @@ public class OkHttpMultipartTest {
         System.out.println("=======================response end=================================================");
 
     }
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws Exception {
 
-        Map<String,String> propertiesMap=readProperties();
+        Map<String,String> propertiesMap=readProperties(args);
         OkHttpClient client = createAuthenticatedClient(propertiesMap.get("username"), propertiesMap.get("password"));
 
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)

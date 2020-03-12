@@ -82,21 +82,13 @@ Hypertext Transfer Protocol
  */
 public class SpringRestTemplateTest {
 
-    private static  Map<String ,String> readProperties() throws IOException {
+    private static Map<String ,String> readProperties(String []args) throws Exception {
         Map<String,String> m=new HashMap<>();
-        Properties prop = new Properties();
-        String propFileName = "config.properties";
 
-        InputStream inputStream = SpringRestTemplateTest.class.getClassLoader().getResourceAsStream(propFileName);
-        if (inputStream != null) {
-            prop.load(inputStream);
-        } else {
-            throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-        }
-        m.put("host",prop.getProperty("host"));
-        m.put("port",prop.getProperty("port"));
-        m.put("username",prop.getProperty("username"));
-        m.put("password",prop.getProperty("password"));
+        m.put("host",args[0]);
+        m.put("port",args[1]);
+        m.put("username",args[2]);
+        m.put("password",args[3]);
         return  m;
     }
     private static void logRequest(HttpEntity request) throws IOException {
@@ -116,8 +108,8 @@ public class SpringRestTemplateTest {
             System.out.println("=======================response end=================================================");
 
     }
-    public static void invokePOST(String content_type_header) throws IOException, URISyntaxException {
-        Map<String,String> propertiesMap=readProperties();
+    public static void invokePOST(String content_type_header,String[]args) throws Exception {
+        Map<String,String> propertiesMap=readProperties(args);
         HttpHeaders headers = new HttpHeaders();
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getInterceptors().add(
@@ -147,15 +139,15 @@ public class SpringRestTemplateTest {
         ResponseEntity response = restTemplate.exchange("http://"+propertiesMap.get("host")+":"+propertiesMap.get("port")+"/LATEST/resources/example", HttpMethod.POST, entity,String.class);
         logResponse(response);
     }
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args)  {
         try {
-            invokePOST("multipart/form-data");
+            invokePOST("multipart/form-data",args);
         }catch(Exception e){
             System.out.println("Exception occured while invoking POST with multipart/form-data content-type header");
 
         }
         try {
-            invokePOST("multipart/mixed");
+            invokePOST("multipart/mixed",args);
         }catch(Exception e){
             System.out.println("Exception occured while invoking POST with multipart/mixed content-type header");
 

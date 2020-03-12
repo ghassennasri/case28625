@@ -20,15 +20,17 @@ task runSpringRestTemplateTest(type: JavaExec) {
     description = "Run SpringRestTemplateTest"
     classpath = sourceSets.main.runtimeClasspath
     main = springRestTemplateTestClass
+    args = [project.property('mlHost'),project.property('mlRestPort'),project.property('mlUsername'),project.property('mlPassword')]
 }
 task runOkHttpMultipartTest(type: JavaExec) {
     group = "Execution"
     description = "Run OkHttpMultipartTest"
     classpath = sourceSets.main.runtimeClasspath
     main = okHttpMultipartTestClass
+    args = [project.property('mlHost'),project.property('mlRestPort'),project.property('mlUsername'),project.property('mlPassword')]
 }
-
-
+runOkHttpMultipartTest.dependsOn mlDeploy
+runSpringRestTemplateTest.dependsOn mlDeploy
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.springframework', name: 'spring-web', version: '5.2.0.RELEASE'
